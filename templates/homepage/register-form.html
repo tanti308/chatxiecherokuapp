@@ -1,0 +1,53 @@
+<!-- Modal -->
+<div class="modal fade" id="register-form" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div id='register-modal' class="modal-dialog modal-sm" role="document">
+    <div class="modal-content">
+      <div class="modal-header d-flex align-items-md-center">
+        <img id='login-icon' src="../../static/image/lock - anticon.png" alt="" width=auto height=auto>
+        <h5 class="modal-title text-primary" id="exampleModalLabel">Register</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form method="post" action="{{url_for('register')}}">
+          <div class="form-group">
+            <label for="exampleInputEmail1">Name</label>
+            <input type="text" name="fullname" class="form-control text-primary" id="exampleInputEmail1" placeholder="Fullname" required data-bv-notempty-message="">
+          </div>
+          <div class="form-group">
+            <label for="exampleInputEmail1">Username</label>
+            <input type="text" name="username" class="form-control text-primary" id="exampleInputEmail1" placeholder="Username" required data-bv-notempty-message="">
+          </div>
+          <div class="form-group">
+            <label for="exampleInputPassword1">Password</label>
+            <input type="password" name ='password' class="form-control text-primary" id="exampleInputPassword1" placeholder="Password" required data-bv-notempty-message="">
+          </div>
+          <div class="form-group">
+            <label for="exampleInputEmail1">EmailID</label>
+            <input type="email" name="email" class="form-control text-primary" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" required data-bv-notempty-message="">
+          </div>
+          <div class="form-group">
+            <label for="exampleInputEmail1">Phonenumber</label>
+            <input type="number" name="phonenumber" class="form-control text-primary" id="exampleInputEmail1" aria-describedby="numberHelp" placeholder="Enter your phonenumber" required data-bv-notempty-message="">
+          </div>
+          <div id='register-button' class="d-flex justify-content-center">
+            <button type="submit " class="btn-lg btn btn-primary col-md-6">Register</button>
+          </div>
+          <div id='login-bottom' class="w-100 text-center">
+            <a id='login-btn' href="#" data-toggle="modal" data-target="#login-form">Login</a>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+    $(document).ready(function(){
+      $("#login-btn").click(function(){
+          $("#login-form").modal();
+          $("#register-form").modal("hide");
+      });
+    });
+</script>

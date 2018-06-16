@@ -1,0 +1,9 @@
+<div class="col-md-12 h-80px d-flex justify-content-between d-flex align-items-md-center">
+  <div class="h-80px d-flex align-items-md-end">
+    <a id='logout-text' class ='text-end text-white' style="text-decoration=none" href="{{url_for('logout')}}">Logout</a>
+  </div>
+  <div class="d-flex align-items-md-center">
+    <a id="username-display" class='text-white long-word-solve' style="text-decoration:none" href="{{url_for("update")}}" method ='get' >{{session['loggedin']}}</a>
+    <img id='avatar' class="rounded-circle border border-white " src="http://placehold.it/100x100" alt="" width="70" height="70">
+  </div>
+</div>

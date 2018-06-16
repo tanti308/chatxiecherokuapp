@@ -1,12 +1,35 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title> Herokuapp</title>
-    <link rel="stylesheet" href="../static/css/style.css">
-  </head>
-  <body>
-    <h1> Herokuapp</h1>
-    <div></div>
-  </body>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <title>Chat Xiec</title>
+  {% include 'meta-data.html'%}
+</head>
+
+<body>
+  <!-- <input type="text" id="text-message">
+  <input type="button" id="btn-message" value="Send">
+  <div id="message-container">  </div> -->
+
+  <!-- {%include 'private-message.html'%} -->
+
+
+
+  <!-- <h1> Herokuapp</h1>
+  {% if "loggedin" in session %}
+  <h2>hello:{{username}}</h2>
+  <br> {% else %}
+  <a href="{{url_for('login')}}" method='get'>login</a>
+  <br> {% endif %}
+  <a href="{{url_for('logout')}}">logout</a>
+  <br>
+  <a href="{{url_for('register')}}" method = 'post'>register</a> -->
+
+{% include 'homepage/nav-top.html'%}
+{% include 'homepage/video-chatbox.html'%}
+{% include 'homepage/button-zone.html'%}
+{% include 'homepage/rooms-list.html'%}
+{% include 'homepage/nav-bottom.html'%}
+</body>
 </html>

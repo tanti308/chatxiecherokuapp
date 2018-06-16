@@ -1,0 +1,109 @@
+<div id='media-box' class="w-100 h-560px d-flex justify-content-around d-flex align-items-md-center">
+  <div id="video" class="w-49 h-500px d-flex flex-md-column d-flex justify-content-between">
+    <div id='screen' class="w-100 h-460px bg-info">
+      <!-- <div id='dot' class="w-25 h-40px d-flex align-items-md-center">
+        <img src="http://placehold.it/100x100" alt="" width="40px" height="40px">
+        <h3 id='resolution'>1024</h3>
+      </div> -->
+      <div class="embed-responsive embed-responsive-16by9">
+        <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/zpOULjyy-n8?rel=0" allowfullscreen ></iframe>
+      </div>
+      <!-- <img src="http://placehold.it/100x100" alt="" width="100%" height="460"> -->
+    </div>
+    <div id='setting-button' class="w-100 h-30px d-flex justify-content-between">
+      <a id='play-button' class="d-flex align-items-md-center d-flex justify-content-center btn btn-primary w-10 h-30px" href="#" role="button">
+        <img src="../../static/image/Player/smallPlayButton.png" alt="" height=auto width="20">
+      </a>
+      <div id='progress-bar' class="bg-cyan w-79 h-30px"></div>
+      <a id='volume-button' class="d-flex align-items-md-center d-flex justify-content-center btn btn-primary w-5 h-30px" href="#" role="button">
+        <img src="../../static/image/Player/volume-icon.png" alt="" height=auto width='12'>
+      </a>
+      <a id='fullscreen-button' class="d-flex align-items-md-center d-flex justify-content-center btn btn-primary w-5 h-30px" href="#" role="button">
+        <img src="../../static/image/Player/full-screen-icon.png" alt="" height=auto width='15'>
+      </a>
+    </div>
+  </div>
+  <div id='chatbox' class="w-49 h-500px rounded ">
+    <div id='message-contain' class="col-md-12">
+      <p>
+        <div id='message-inside-left' class="d-flex align-items-md-center">
+          <img src="http://placehold.it/100x100" class="rounded-circle message-object" alt="" height="30" width="30">
+          <h4 id='name' class ='message-object text-muted'>name</h4>
+          <div id='message-box' class="message-border">
+            <h4 id='message' class ='message-object text-white'><span>message</span></h4>
+          </div>
+        </div>
+        <div id='message-inside-left-host' class="d-flex align-items-md-center">
+          <img src="http://placehold.it/100x100" class="rounded-circle message-object" alt="" height="30" width="30">
+          <h4 id='name-host' class ='message-object text-purple'>name</h4>
+          <div id='message-box-host' class="message-border">
+            <h4 id='message-host' class ='message-object rounded text-white'><span>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident</span></h4>
+          </div>
+        </div>
+        <div id='message-inside-right' class="d-flex align-items-md-center d-flex justify-content-end">
+          <div id='message-box' class="message-border">
+            <h4 id='message' class ='message-object rounded text-white'><span>message</span></h4>
+          </div>
+          <img id='host-image' src="http://placehold.it/100x100" class="rounded-circle message-object" alt="" height="30" width="30">
+        </div>
+        <div id='message-inside-left' class="d-flex align-items-md-center">
+          <img src="http://placehold.it/100x100" class="rounded-circle message-object" alt="" height="30" width="30">
+          <h4 id='name' class ='message-object text-muted'>name</h4>
+          <div id='message-box' class="message-border">
+            <h4 id='message' class ='message-object rounded text-white'><span>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident</span></h4>
+          </div>
+        </div>
+        <div id='message-inside-right' class="d-flex align-items-md-center d-flex justify-content-end">
+          <div id='message-box' class="message-border">
+            <h4 id='message' class ='message-object rounded text-white'><span>message</span></h4>
+          </div>
+          <img id='host-image' src="http://placehold.it/100x100" class="rounded-circle message-object" alt="" height="30" width="30">
+        </div>
+        <div id='message-inside-right' class="d-flex align-items-md-center d-flex justify-content-end">
+          <div id='message-box' class="message-border">
+            <h4 id='message' class ='message-object rounded text-white'><span>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident</span></h4>
+          </div>
+          <img id='host-image' src="http://placehold.it/100x100" class="rounded-circle message-object" alt="" height="30" width="30">
+        </div>
+      </p>
+    </div>
+    <form method="post">
+      <div class="input-group mb-3 h-70px bg-white">
+        <div class="input-group-append">
+          <button id='file-button' class="btn btn-outline-primary button" type="button" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+            <img src="../../static/image/Fill 1.png" alt="" height="20" width="20">
+          </button>
+          <div class="collapse" id="collapseExample">
+            <div class="card card-body">
+              <div id='file-input' class="input-group">
+                <div class="custom-file">
+                  <input type="file" class="custom-file-input" id="inputGroupFile04">
+                  <label class="custom-file-label long-word-solve" for="inputGroupFile04">Choose file</label>
+                </div>
+                <div class="input-group-append">
+                  <button class="btn btn-outline-primary" type="submit">Button</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <input id='message-input' type="text" name='message' class="form-control" placeholder="Send your message" aria-label="Send your message" aria-describedby="basic-addon2">
+        <div class="input-group-append">
+          <button id='send-button' class="btn btn-outline-primary button" type="submit">
+            <img src="../../static/image/paper-plane.png" alt="" height="30" width="30">
+          </button>
+          <button id='emotion-button' class="btn btn-outline-primary button" type="button">
+            <img src="../../static/image/smile.png" alt="" height="20" width="20">
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script>
+      $('.custom-file-input').on('change', function() {
+        let fileName = $(this).val().split('\\').pop();
+        $(this).siblings('.custom-file-label').addClass('selected').html(fileName);
+      });
+</script>

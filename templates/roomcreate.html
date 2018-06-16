@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    {% include 'meta-data.html'%}
+  </head>
+  <body>
+    {% include 'homepage/nav-top.html'%}
+    <div class="col-md-12 h-800px bg-gray-white  d-flex justify-content-center d-flex align-items-md-center">
+      <div class="col-md-6 h-750px bg-white d-flex justify-content-center d-flex align-items-md-center">
+        <div class="col-md-10 h-700px">
+          <div class="text-center">
+            <h1 id='your-profile-text' class='text-primary'>Create Cx Room!</h1>
+          </div>
+          <form method="post">
+            <!-- enctype="multipart/form-data" -->
+            <div class="form-group">
+              <label for="inputEmail4" class='text-primary'>TITLE</label>
+              <input type="text" name='title' class="form-control" id="inputEmail4" placeholder="Enter your room title here" required data-bv-notempty-message="">
+            </div>
+            <div class="form-group">
+              <label for="inputEmail4" class='text-primary'>DISCRIBTION YOUR ROOM</label>
+              <input type="text" name='discribtion' class="form-control" id="inputEmail4" placeholder="Enter your room discribtion" required data-bv-notempty-message="">
+            </div>
+            <div class="form-group">
+              <label for="inputAddress2" class='text-primary'>ROOM'S PASSWORD</label>
+              <input type="password" name="password" class="form-control" id="inputAddress2" placeholder="Enter your room password! Leave it blank if you want!">
+            </div>
+            <div class="form-group">
+              <div class="h-40px d-flex justify-content-between ">
+                <div class="h-24px">
+                  <label for="inputAddress2" class='text-primary'>ADD VIDEO</label>
+                </div>
+                <div class="h-30px col-md-8 d-flex justify-content-end d-flex align-items-md-center">
+                  <img class='label-image' src="../static/image/Youtube.png" alt="" height="20" width="25">
+                  <img class='label-image' src="../static/image/Soundcloud.png" alt="" height="20" width="25">
+                  <img class='label-image' src="../static/image/Vimeo.png" alt="" height="20" width="20">
+                  <img class='label-image' src="../static/image/Dailymotion.png" alt="" height="20" width="20">
+                  <img class='label-image' src="../static/image/Cx_live.png" alt="" height="18" width="40">
+                </div>
+              </div>
+              <input type="url" class="form-control" id="inputAddress2" placeholder="Add Your Video Link" required data-bv-notempty-message="">
+            </div>
+            <label for="drop-file-img" class='text-primary'>Upload your thumb image</label>
+            <div id='drop-place' class=" form-group upload-drop-zone col-md-12 h-100px rounded d-flex align-items-md-center d-flex justify-content-center">
+              <img id='drop-file-img' src="../static/image/upload icon.png" alt="" height="15" width="15">
+              <div class="h-24px">
+                <h5 class='text-primary'>You can drop file here!</h5>
+              </div>
+            </div>
+            <h6 class='text-primary'>Or choose file here:</h6>
+            <div class="custom-file">
+              <input type="file" name="image" multiple class="custom-file-input" id="inputGroupFile01" >
+              <!-- data-allowed-file-extensions='["jpg", "png"]' -->
+              <label class="custom-file-label long-word-solve" for="inputGroupFile01">Choose file</label>
+            </div>
+            <div class="col-md-12 d-flex justify-content-center">
+              <button id="create-btn" type="submit" class="btn btn-primary col-md-3 btn-sm d-flex align-items-md-center ">
+                <img id='create-image' src="../../static/image/angle-double-right.png" alt="" width="20" height="18">
+                <div class="">
+                  <h4>Create</h4>
+                </div>
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    {% include 'homepage/nav-bottom-copyright.html'%}
+  </body>
+</html>
+
+<script>
+      $('.custom-file-input').on('change', function() {
+        let fileName = $(this).val().split('\\').pop();
+        $(this).siblings('.custom-file-label').addClass('selected').html(fileName);
+      });
+</script>
+<script src="../static/js/dropzone.js"></script>

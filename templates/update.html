@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Profile</title>
+    {% include 'meta-data.html' %}
+  </head>
+  <body>
+    {% include 'homepage/nav-top.html' %}
+    <div class="col-md-12 h-700px bg-gray-white  d-flex justify-content-center d-flex align-items-md-center">
+      <div class="col-md-6 h-400px bg-white d-flex justify-content-center d-flex align-items-md-center">
+        <div class="col-md-10 h-300px">
+          <div class="text-center">
+            <h1 id='your-profile-text' class='text-cyan'>Your Profile</h1>
+          </div>
+          <form >
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <label for="inputAddress" class='text-cyan'>Fullname</label>
+                <input type="text" name="fullname" class="form-control" id="inputAddress" value="{{fullname}}" required data-bv-notempty-message="">
+              </div>
+              <div class="form-group col-md-6 d-flex align-items-md-end">
+                <img src="http://placehold.it/100x100" class="rounded-circle" alt="" width="60" height="60">
+                <div class="col-md-10 h-50px">
+                  <h5 class='text-primary' class='text-cyan'>AVATAR</h5>
+                  <div class="custom-file">
+                    <input type="file" name="image" class="custom-file-input" id="inputGroupFile01" value="{{image}}">
+                    <label class="custom-file-label long-word-solve" for="inputGroupFile01">Choose file</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inputEmail4" class='text-cyan'>Email</label>
+              <input type="email" name ='email' class="form-control" id="inputEmail4" value="{{email}}" required data-bv-notempty-message="">
+            </div>
+            <div class="form-group">
+              <label for="inputAddress2" class='text-cyan'>Phonenumber</label>
+              <input type="number" name='phonenumber' class="form-control" id="inputAddress2" value="{{phonenumber}}" required data-bv-notempty-message="">
+            </div>
+            <div class="col-md-12 d-flex justify-content-center">
+              <button type="submit" class="btn btn-primary col-md-3 btn-sm d-flex align-items-md-center">
+                <img id='save-image' src="../../static/image/angle-double-right.png" alt="" width="26" height="20">
+                <div class="">
+                  <h4>Save</h4>
+                </div>
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    {% include 'homepage/nav-bottom-copyright.html'%}
+  </body>
+</html>
+
+<script>
+      $('.custom-file-input').on('change', function() {
+        let fileName = $(this).val().split('\\').pop();
+        $(this).siblings('.custom-file-label').addClass('selected').html(fileName);
+      });
+</script>
