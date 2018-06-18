@@ -2,15 +2,15 @@
   <div class="bg-slide1 col-md-11 h-5px rounded"></div>
 </div>
 <div id='room-contain' class="w-100 d-flex justify-content-around d-flex flex-wrap ">
-  <!-- card-1 -->
+  {% for room in room_data%}
       <div class="card w-26 h-500px room">
-        <img class="card-img-top" src="http://placehold.it/100x100" alt="Card image cap" width="26%" height="280">
+        <img class="card-img-top" src="../../static/image/upload_image/{{room['image']}}" alt="Card image cap" width="26%" height="280">
         <div class="card-body">
-          <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+          <p class="card-text">{{room['title']}}</p>
           <div class="w-100 h-30px d-flex justify-content-between">
             <div class="col-md-4 h-20px ">
               {% if 'loggedin' in session %}
-                <a href="{{url_for('room_detail')}}">Join now!</a>
+                <a href="{{url_for('room_detail',roomid= room['id'])}}">Join now!</a>
               {% else %}
                 <a href="#" data-toggle="modal" data-target="#login-form">Join now!</a>
               {% endif %}
@@ -26,105 +26,5 @@
           </div>
         </div>
       </div>
-  <!-- card-2 -->
-      <div class="card w-26 h-500px room">
-        <img class="card-img-top" src="http://placehold.it/100x100" alt="Card image cap" width="26%" height="280">
-        <div class="card-body">
-          <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-          <div class="w-100 h-30px d-flex justify-content-between">
-            <div class="col-md-4 h-20px ">
-              <a href="#">Join now!</a>
-            </div>
-            <div class="col-md-4 h-30px d-flex justify-content-between d-flex align-items-md-center">
-              <div id='heart-image' class="h-30px">
-                <img src="../../static/image/heart-o - anticon.png" alt="" width=auto height=auto>
-              </div>
-              <div id='like-count' class="h-20px">
-                <h6>24,334</h6>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-<!-- card-3 -->
-      <div class="card w-26 h-500px room">
-        <img class="card-img-top" src="http://placehold.it/100x100" alt="Card image cap" width="26%" height="280">
-        <div class="card-body">
-          <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-          <div class="w-100 h-30px d-flex justify-content-between">
-            <div class="col-md-4 h-20px ">
-              <a href="#">Join now!</a>
-            </div>
-            <div class="col-md-4 h-30px d-flex justify-content-between d-flex align-items-md-center">
-              <div id='heart-image' class="h-30px">
-                <img src="../../static/image/heart-o - anticon.png" alt="" width=auto height=auto>
-              </div>
-              <div id='like-count' class="h-20px">
-                <h6>24,334</h6>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-<!-- card-4 -->
-      <div class="card w-26 h-500px room">
-        <img class="card-img-top" src="http://placehold.it/100x100" alt="Card image cap" width="26%" height="280">
-        <div class="card-body">
-          <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-          <div class="w-100 h-30px d-flex justify-content-between">
-            <div class="col-md-4 h-20px ">
-              <a href="#">Join now!</a>
-            </div>
-            <div class="col-md-4 h-30px d-flex justify-content-between d-flex align-items-md-center">
-              <div id='heart-image' class="h-30px">
-                <img src="../../static/image/heart-o - anticon.png" alt="" width=auto height=auto>
-              </div>
-              <div id='like-count' class="h-20px">
-                <h6>24,334</h6>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-  <!-- card-5 -->
-      <div class="card w-26 h-500px room">
-        <img class="card-img-top" src="http://placehold.it/100x100" alt="Card image cap" width="26%" height="280">
-        <div class="card-body">
-          <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-          <div class="w-100 h-30px d-flex justify-content-between">
-            <div class="col-md-4 h-20px ">
-              <a href="#">Join now!</a>
-            </div>
-            <div class="col-md-4 h-30px d-flex justify-content-between d-flex align-items-md-center">
-              <div id='heart-image' class="h-30px">
-                <img src="../../static/image/heart-o - anticon.png" alt="" width=auto height=auto>
-              </div>
-              <div id='like-count' class="h-20px">
-                <h6>24,334</h6>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-<!-- card-6 -->
-      <div class="card w-26 h-500px room">
-        <img class="card-img-top" src="http://placehold.it/100x100" alt="Card image cap" width="26%" height="280">
-        <div class="card-body">
-          <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-          <div class="w-100 h-30px d-flex justify-content-between">
-            <div class="col-md-4 h-20px ">
-              <a href="#">Join now!</a>
-            </div>
-            <div class="col-md-4 h-30px d-flex justify-content-between d-flex align-items-md-center">
-              <div id='heart-image' class="h-30px">
-                <img src="../../static/image/heart-o - anticon.png" alt="" width=auto height=auto>
-              </div>
-              <div id='like-count' class="h-20px">
-                <h6>24,334</h6>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
+  {% endfor %}
 </div>

@@ -101,6 +101,14 @@
   height: 600px;
 }
 
+.h-629px{
+  height: 629px;
+}
+
+.h-650px{
+  height: 650px;
+}
+
 .h-700px{
   height: 700px;
 }
@@ -496,6 +504,35 @@ width: 79%;
 
 #signup-image{
   margin-right: 0px;
+}
+
+#tokuda-bg{
+  background-image: url('../image/tokuda.jpg');
+  background-size: cover;
+  background-attachment: fixed;
+  height: 780px;
+}
+
+#text-exception{
+  text-shadow: 1px 1px white
+}
+
+#fbi-warning{
+  background-image: url('../image/fbi_warning.jpg');
+  background-size: cover;
+}
+
+#fbi-warning-bg{
+  background-color: #0a0a0a;
+  background-size: cover;
+  background-attachment: fixed;
+  height: 780px;
+}
+
+#avatar-count-contain-small{
+  height: 50px;
+  width: 650px;
+  overflow-x: auto;
 }
 
 #heading-title{

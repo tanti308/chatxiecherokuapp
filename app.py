@@ -1,4 +1,5 @@
 from flask import *
+from datetime import datetime
 from flask_socketio import *
 from jinja2 import *
 import mlab
@@ -8,8 +9,16 @@ from werkzeug.utils import secure_filename
 
 app = Flask(__name__)
 
-UPLOAD_FOLDER = "media/"
-ALLOWED_EXTENSIONS = set(['jpg','png','gif'])
+
+mlab.connect()
+
+app.secret_key = 'this key is secret'
+
+app.config['SECRET_KEY'] = '123@#@45690@#'
+socketio = SocketIO(app)
+
+UPLOAD_FOLDER = 'static\image\\upload_image'
+ALLOWED_EXTENSIONS = set(['jpg','png'])
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 def allowed_file(filename):
     check_1 = "." in filename
@@ -20,58 +29,10 @@ def allowed_file(filename):
     #     return False
     return check_1 and check_2
 
-@app.route('/upload',methods =["POST","GET"])
-def upload():
-    if request.method == "GET":
-        return render_template('upload.html')
-    elif request.method == "POST":
-        form = request.form
-        userid= form['userid']
-        title = form['title']
-        description = form['description']
-        password = form['password']
-        print(title)
-        print(description)
-        file = request.files['image']
-        image_name = file.filename
-        if file and allowed_file(image_name):
-             image_name = secure_filename(image_name)
-             print(image_name)
-             file.save(os.path.join(app.config['UPLOAD_FOLDER']), image_name)
-        new_room = Room(userid=userid, title=title, description=description, password =password, image=image_name, viewer=0)
-        new_room.save()
-        return render_template('show.html',title=title,image=image_name)
-
-#----------------------------phần upload--------------------------
-
-mlab.connect()
-
-app.secret_key = 'this key is secret'
-
-app.config['SECRET_KEY'] = '123@#@45690@#'
-socketio = SocketIO(app)
-
-
-@socketio.on('connect', namespace='/player')
-def connect():
-    print(request.sid)
-
-# Tin nhắn global
-
-
-@socketio.on('Client-send-message', namespace='/message')
-def Client_send_message(data):
-    print('User {0} gửi tin nhắn!'.format(request.sid))
-
-    # Server gửi tin nhắn global cho tất cả các user
-    emit('Server-send-message-all-client', data,
-         namespace='/message', broadcast=True)
-
 
 # Xử lý gửi tin nhắn private cho 1 user được chỉ định
 # Bước 1: Xử lý đăng ký user vào Dictionary
 users = {}
-
 
 @socketio.on('private-message-send-username', namespace='/private-mesage')
 def receive_username(username):
@@ -97,11 +58,18 @@ def receive_private_message(tinnhan):
 
 @app.route('/')
 def index():
+    room_data = Room.objects()
     if 'loggedin' in session:
         username = session['loggedin']
+        user_data = User.objects(username = username)
+        for user in user_data:
+            name = user['username']
+            image = user['image']
+            print(image)
     else:
         username = ""
-    return render_template('index.html', username=username)
+        image = "profile_img.png"
+    return render_template('index.html', room_data = room_data, image = image)
 
 
 @app.route('/register', methods=['GET', 'POST'])  # methods la ten bat buoc
@@ -116,7 +84,7 @@ def register():
         email = form['email']
         phonenumber = form['phonenumber']
         new_user = User(fullname=fullname, username=username, password=password,
-                        email=email, phonenumber=phonenumber, role=0, image="", status=1, message_status=1)
+                        email=email, phonenumber=phonenumber, role=0, image="profile_img.png", status=1, message_status=1)
         session['loggedin'] = username
         # print(new_user.fullname)
         new_user.save()
@@ -143,8 +111,12 @@ def login():
         else:
             for user in user_data:  # dùng vòng for lấy dữ liệu khỏi list
                 if user.password == password:
+                    room_data = Room.objects()
                     session['loggedin'] = username
-                    return redirect(url_for('index'))
+                    user_list = User.objects()
+                    for user in user_list:
+                        image = user['image']
+                    return render_template('index.html',user_list = user_list,room_data = room_data, image = image)
                     # return ('',204)
 
 
@@ -171,42 +143,81 @@ def update():
         fullname = form['fullname']
         email = form['email']
         phonenumber = form['phonenumber']
-        image = form['image']
+        file = request.files['image']
+        image_name = file.filename
+        if file and allowed_file(image_name):
+             image_name = secure_filename(image_name)
+             print(image_name)
+             # file.save(image_name)
+             file.save(os.path.join(app.config['UPLOAD_FOLDER'], image_name))
+
         user_data.update(set__fullname=fullname, set__email=email,
-                         set__phonenumber=phonenumber, set__image=image)
-        return redirect(url_for('update'), method='GET')
+                         set__phonenumber=phonenumber, set__image=image_name)
+        return redirect(url_for('update'))
 
 
 @app.route('/roomcreate', methods=['GET', 'POST'])
 def roomcreate():
     if request.method == "GET":
-        return render_template("roomcreate.html")
+        user_data = User.objects(username = session['loggedin'])
+        for user in user_data:
+            image = user['image']
+        return render_template("roomcreate.html",image = image)
     elif request.method == "POST":
         form = request.form
         title = form['title']
         description = form['description']
         password = form['password']
-        image = form['image']
-        new_room = Room(username=session['loggedin'], title=title,
-                        description=description, password=password, viewer=0, image=image)
+        link = form['link']
+        file = request.files['image']
+        image_name = file.filename
+        if file and allowed_file(image_name):
+             image_name = secure_filename(image_name)
+             print(image_name)
+             # file.save(image_name)
+             file.save(os.path.join(app.config['UPLOAD_FOLDER'], image_name))
+
+        user_data = User.objects(username = session['loggedin'])
+        for user in user_data:
+            userid = user['id']
+        new_room = Room(userid=userid, title=title,
+                        description=description, password=password, viewer=0, image=image_name)
         new_room.save()
-        return redirect(url_for('index'), method='GET')
+        return redirect(url_for('index'))
 
 
-@app.route('/roomhost')
-def roomhost():
-    return render_template('roomhost.html')
+@app.route('/roomhost/<roomid>')
+def roomhost(roomid):
+    user_data = User.objects(username = session['loggedin'])
+    for user in user_data:
+        image = user['image']
+    return render_template('roomhost.html',roomid = roomid,image= image)
 
 
-@app.route('/room-detail')
-def room_detail():
-    return render_template('room-detail.html')
+@app.route('/room-detail/<roomid>')
+def room_detail(roomid):
+    user_data = User.objects(username = session['loggedin'])
+    for user in user_data:
+        image = user['image']
+    return render_template('room-detail.html',roomid = roomid, image = image)
 
 
 @app.route('/roomlist')
 def roomlist():
-    room_list = Room.objects(username=session['loggedin'])
-    return render_template('roomlist.html', room_list=room_list)
+    user_data = User.objects(username = session['loggedin'])
+    for user in user_data:
+        user_id = user['id']
+        image = user['image']
+    room_list = Room.objects(userid = user_id)
+    return render_template('roomlist.html', room_list = room_list,image =image)
+
+@app.route('/exception')
+def exception():
+    return render_template('exception.html')
+
+@app.route('/fbi_warning')
+def fbi_warning():
+    return render_template('fbi-warning.html')
 
 # Send play and pause
 
@@ -216,6 +227,46 @@ def play_pause(data):
     emit('server-send-play-pause', data, broadcast=True)
     print(data)
 
+a = 0
+@socketio.on('connect', namespace='/message')
+def test_connect():
+    global a
+    a +=1
+    emit('my response', {'data': 'Connected'})
+    print('Connected! ', a)
+    emit('server_sent_count', a, namespace = "/message", broadcast = True)
+
+@socketio.on('disconnect', namespace = '/message')
+def test_disconnect():
+    global a
+    a -=1
+    print('Disconnected', a)
+    emit('server_sent_count', a, namespace = "/message", broadcast = True)
+        
+
+
+@socketio.on('client-sent-message', namespace = "/message")
+def client_sent_message(data):
+    username = session['loggedin']
+    # Luu message vao csdl
+    user = User.objects(username = username).first()
+    new_message = Message(
+        userid = str(user.id),
+        clientid = data['userid'],
+        message = data['message'],
+        datetime = data['date']
+    )
+    new_message.save()
+
+# Lay message trong csdll
+    message_send = Message.objects().with_id(new_message.id)
+    data_to_send = {
+        'clientid' : message_send.clientid,
+        'username': username,
+        'message' : message_send.message
+    }
+
+    emit('server_sent_message', data_to_send, namespace = "/message", broadcast = True)
 
 @app.route('/player')
 def player():
@@ -223,4 +274,4 @@ def player():
 
 
 if __name__ == '__main__':
-    socketio.run(app, host='127.0.0.1', port=3000, debug=True)
+    socketio.run(app, host='127.0.0.1', port=3000, debug=False)

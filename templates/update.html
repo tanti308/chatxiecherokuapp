@@ -2,8 +2,7 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profile</title>
+    <title>Chat Xiec - Chat va Xem</title>
     {% include 'meta-data.html' %}
   </head>
   <body>
@@ -14,18 +13,18 @@
           <div class="text-center">
             <h1 id='your-profile-text' class='text-cyan'>Your Profile</h1>
           </div>
-          <form >
+          <form method="post" enctype="multipart/form-data">
             <div class="form-row">
               <div class="form-group col-md-6">
                 <label for="inputAddress" class='text-cyan'>Fullname</label>
                 <input type="text" name="fullname" class="form-control" id="inputAddress" value="{{fullname}}" required data-bv-notempty-message="">
               </div>
               <div class="form-group col-md-6 d-flex align-items-md-end">
-                <img src="http://placehold.it/100x100" class="rounded-circle" alt="" width="60" height="60">
+                <img src="../static/image/upload_image/{{image}}" class="rounded-circle" alt="" width="60" height="60">
                 <div class="col-md-10 h-50px">
                   <h5 class='text-primary' class='text-cyan'>AVATAR</h5>
                   <div class="custom-file">
-                    <input type="file" name="image" class="custom-file-input" id="inputGroupFile01" value="{{image}}">
+                    <input type="file" name="image" class="custom-file-input" id="inputGroupFile01" value=''>
                     <label class="custom-file-label long-word-solve" for="inputGroupFile01">Choose file</label>
                   </div>
                 </div>

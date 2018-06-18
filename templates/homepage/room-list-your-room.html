@@ -8,12 +8,12 @@
   {% for room in room_list%}
   <!-- card-1 -->
       <div class="card w-26 h-500px room">
-        <img class="card-img-top" src="{{room['image']}}" alt="Card image cap" width="26%" height="280">
+        <img class="card-img-top" src="../../static/image/upload_image/{{room['image']}}" alt="Card image cap" width="26%" height="280">
         <div class="card-body">
           <p class="card-text">{{room['title']}}</p>
           <div class="w-100 h-30px d-flex justify-content-between">
             <div class="col-md-4 h-20px ">
-              <a href="{{url_for('roomhost')}}">Join now!</a>
+              <a href="{{url_for('roomhost',roomid = room['id'])}},">Join now!</a>
             </div>
             <div class="col-md-4 h-30px d-flex justify-content-between d-flex align-items-md-center">
               <div id='heart-image' class="h-30px">
@@ -27,24 +27,4 @@
         </div>
       </div>
     {% endfor%}
-  <!-- card-1 -->
-      <div class="card w-26 h-500px room">
-        <img class="card-img-top" src="http://placehold.it/100x100" alt="Card image cap" width="26%" height="280">
-        <div class="card-body">
-          <p class="card-text">hello my due</p>
-          <div class="w-100 h-30px d-flex justify-content-between">
-            <div class="col-md-4 h-20px ">
-              <a href="{{url_for('roomhost')}}">Join now!</a>
-            </div>
-            <div class="col-md-4 h-30px d-flex justify-content-between d-flex align-items-md-center">
-              <div id='heart-image' class="h-30px">
-                <img src="../../static/image/heart-o - anticon.png" alt="" width=auto height=auto>
-              </div>
-              <div id='like-count' class="h-20px">
-                <h6>12345</h6>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
 </div>
